@@ -3,9 +3,10 @@ FROM        ubuntu:16.04
 RUN apt-get update
 RUN apt-get install -y gnuradio gr-osmosdr libhackrf-dev libuhd-dev
 RUN apt-get install -y git cmake build-essential libboost-all-dev libusb-1.0-0.dev libssl-dev
+RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:myriadrf/drivers
 RUN apt-get update
-RUN apt-get install limesuite liblimesuite-dev limesuite-udev limesuite-images soapysdr soapysdr-module-lms7
+RUN apt-get install -y limesuite liblimesuite-dev limesuite-udev limesuite-images soapysdr soapysdr-module-lms7
 # install necessary locales
 RUN apt-get install -y locales \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
