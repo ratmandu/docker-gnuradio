@@ -1,4 +1,4 @@
-FROM        ubuntu:16.04 
+FROM        ubuntu:16.04 AS base
 
 RUN apt-get update
 RUN apt-get install -y gnuradio gr-osmosdr libhackrf-dev libuhd-dev
@@ -27,6 +27,7 @@ RUN     apt-get -yqq update && \
         apt-get autoremove -y && \
         apt-get clean -y
 
+FROM base as build
 
 ARG        PKG_CONFIG_PATH=/opt/ffmpeg/lib/pkgconfig
 ARG        LD_LIBRARY_PATH=/opt/ffmpeg/lib
