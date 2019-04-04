@@ -27,7 +27,7 @@ RUN     apt-get -yqq update && \
         apt-get autoremove -y && \
         apt-get clean -y
 
-FROM base as build
+FROM base as builder
 
 ARG        PKG_CONFIG_PATH=/opt/ffmpeg/lib/pkgconfig
 ARG        LD_LIBRARY_PATH=/opt/ffmpeg/lib
@@ -345,7 +345,7 @@ RUN \
 
 ENV         LD_LIBRARY_PATH=/usr/local/lib
 
-COPY --from=build /usr/local /usr/local/
+COPY --from=builder /usr/local /usr/local/
 
 # Let's make sure the app built correctly
 # Convenient to verify on https://hub.docker.com/r/jrottenberg/ffmpeg/builds/ console output
